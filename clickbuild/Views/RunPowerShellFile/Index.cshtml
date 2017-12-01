@@ -1,0 +1,12 @@
+﻿@model clickbuild.Models.PowerShellScript
+
+
+@using (Html.BeginForm("ExecutePowerShellFile", "RunPowerShellFile", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-lg-6 form-group run-script-button">
+            <input type="submit" value="Run Script" class="btn btn-default" />
+        </div>
+    </div>
+}
+

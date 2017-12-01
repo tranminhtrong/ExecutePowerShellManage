@@ -1,0 +1,22 @@
+﻿@model clickbuild.Models.PowerShellScript
+
+
+@using (Html.BeginForm("RunScript", "RunScript", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-lg-6 form-group">
+            @Html.Label("Enter Script", new { @for = "ScriptCommand" })
+            @Html.TextAreaFor(m => m.ScriptCommand, new { @class = "form-control run-script-textarea" })
+        </div>
+        <div class="col-lg-6 form-group run-script-button">
+            <input type="submit" value="Run Script" class="btn btn-default" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            @Html.Label("Output", new { @for="txtResult" })
+            @Html.TextArea("txtResult", (string)ViewBag.Result, new { @class = "form-control run-script-textarea-output" })
+        </div>
+    </div>
+}
+
