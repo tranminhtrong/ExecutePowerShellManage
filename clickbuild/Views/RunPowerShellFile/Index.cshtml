@@ -1,8 +1,31 @@
-﻿@model clickbuild.Models.PowerShellScript
+﻿@model clickbuild.Models.ViewModelUndeployParameters
 
 
 @using (Html.BeginForm("ExecutePowerShellFile", "RunPowerShellFile", FormMethod.Post))
 {
+    <div class="row">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayName("Name")
+                </th>
+                <th>
+                    @Html.DisplayName("Value")
+                </th>
+            </tr>
+            @foreach (var item in Model.undeployParametersModel)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Value)
+                    </td>
+                </tr>
+}
+        </table>
+    </div>
     <div class="row">
         <div class="col-lg-6 form-group run-script-button">
             <input type="submit" value="Run Script" class="btn btn-default" />

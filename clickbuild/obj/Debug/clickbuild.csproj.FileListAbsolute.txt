@@ -42,3 +42,4 @@ c:\users\ttran229\source\repos\clickbuild\clickbuild\obj\Debug\clickbuild.csproj
 c:\users\ttran229\source\repos\clickbuild\clickbuild\obj\Debug\clickbuild.dll
 c:\users\ttran229\source\repos\clickbuild\clickbuild\obj\Debug\clickbuild.pdb
 c:\users\ttran229\source\repos\clickbuild\clickbuild\bin\PowerShell.dll
+C:\Users\ttran229\source\repos\clickbuild\clickbuild\bin\PowerShellScript\getProcess.ps1

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using clickbuild.Models;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Management.Automation;
 using System.Management.Automation.Runspaces;
@@ -59,26 +60,37 @@ namespace clickbuild.Bus
 		/// <param name="scriptFullPath">The full file path for the .ps1 file.</param>
 		/// <param name="parameters">The parameters for the script, can be null.</param>
 		/// <returns>The output from the Powershell execution.</returns>
-		//public static ICollection<PSObject> ExecutePowerShellFile(string scriptFullPath, ICollection<CommandParameter> parameters = null)
-		//{
-		//	var runspace = RunspaceFactory.CreateRunspace();
-		//	runspace.Open();
-		//	var pipeline = runspace.CreatePipeline();
-		//	var cmd = new Command(scriptFullPath);
-		//	if (parameters != null)
-		//	{
-		//		foreach (var p in parameters)
-		//		{
-		//			cmd.Parameters.Add(p);
-		//		}
-		//	}
-		//	pipeline.Commands.Add(cmd);
-		//	var results = pipeline.Invoke();
-		//	pipeline.Dispose();
-		//	runspace.Dispose();
-		//	return results;
-		//}
+		public static string ExecutePowerShellFile(PowerShellScript myScript, ICollection<CommandParameter> parameters = null)
+		{
+			string scriptFullPath = string.Format("{0}\\{1}", myScript.FilePath, myScript.FileName);
+			var runspace = RunspaceFactory.CreateRunspace();
+			runspace.Open();
+			var pipeline = runspace.CreatePipeline();
+			var cmd = new Command(scriptFullPath);
+			if (parameters != null)
+			{
+				foreach (var p in parameters)
+				{
+					cmd.Parameters.Add(p);
+				}
+			}
+			pipeline.Commands.Add(cmd);
+			var results = pipeline.Invoke();
+			pipeline.Dispose();
+			runspace.Dispose();
 
-		
+			StringBuilder stringBuilder = new StringBuilder();
+			foreach (PSObject obj in results)
+			{
+				stringBuilder.AppendLine(obj.ToString());
+			}
+
+			//Get details information
+			//results[0].BaseObject
+
+			return stringBuilder.ToString();
+		}
+
+
 	}
 }
